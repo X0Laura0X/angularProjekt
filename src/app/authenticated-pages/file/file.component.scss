@@ -1,0 +1,85 @@
+$large-size: 30px;
+$medium-size: 20px;
+$small-size: 10px;
+
+$purple: #4B0082;
+$yellow: #cca633;
+
+mat-tab-group {
+  position: relative;
+  padding: $large-size;
+  top: 5%;
+  box-shadow: 0 0 5px black;
+  height: fit-content;
+}
+
+.comment-header {
+  font-size: $large-size;
+  text-shadow: 0 0 5px black;
+  text-transform: uppercase;
+  font-weight: lighter;
+  padding: $medium-size 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: fit-content;
+  left: 0;
+  right: 0;
+  padding: $large-size;
+  border-radius: $medium-size;
+  background-color: $purple;
+  position: relative;
+}
+
+.update-form {
+  width: fit-content;
+  margin: $large-size auto;
+  top: 5%;
+}
+
+.comment-form {
+  width: 70%;
+  margin: 5px auto;
+}
+
+mat-form-field {
+  padding: $medium-size 0;
+}
+
+button[type="button"] {
+  display: block;
+  margin: $small-size;
+}
+
+#type-text {
+  font-weight: bold;
+  margin-right: 15px;
+  padding: $medium-size 0;
+}
+
+.white-text {
+  color: white;
+}
+
+#brofist-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+mat-divider {
+  border: 1px solid $yellow;
+  margin-bottom: $medium-size;
+}
+
+#delete-comment-button {
+  transform: scale(80%);
+  float: right;
+}
+
+#delete-comment-button mat-icon {
+  transform: translate(-7%, 7%);
+}

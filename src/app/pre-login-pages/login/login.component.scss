@@ -1,0 +1,38 @@
+$large-size: 30px;
+$medium-size: 20px;
+$small-size: 10px;
+
+.login-header {
+  text-align: center;
+  font-size: $large-size;
+  text-shadow: 0 0 5px black;
+  text-transform: uppercase;
+  font-weight: lighter;
+  position: relative;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 100px;
+}
+
+mat-form-field {
+  width: 300px;
+  margin-bottom: $medium-size;
+}
+
+.login-form button {
+  width: 300px;
+}
+
+#warning-text {
+  color: red;
+  text-transform: uppercase;
+  font-weight: lighter;
+  padding: $small-size;
+  margin: $small-size;
+}

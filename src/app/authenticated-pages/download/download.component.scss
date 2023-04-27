@@ -1,0 +1,61 @@
+$large-size: 30px;
+$medium-size: 20px;
+$small-size: 10px;
+
+$purple: #4B0082;
+$yellow: #cca633;
+
+mat-card {
+  width: fit-content;
+  position: relative;
+  height: fit-content;
+  margin: auto;
+  left: 0;
+  right: 0;
+  padding: $large-size;
+  border-radius: $medium-size;
+  background-color: $purple;
+  box-sizing: border-box;
+}
+
+.download-header {
+  font-size: $large-size;
+  text-shadow: 0 0 5px black;
+  text-transform: uppercase;
+  font-weight: lighter;
+  padding: $small-size 0;
+}
+
+table {
+  width: fit-content;
+  height: fit-content;
+  background: none;
+}
+
+th, td {
+  color: white;
+}
+
+button {
+  transform: scale(80%);
+}
+
+mat-divider {
+  border: 1px solid $yellow;
+  margin-bottom: $medium-size;
+}
+
+#type {
+  text-transform: capitalize;
+}
+
+#name {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 380px) {
+  mat-card {
+    width: 100%;
+  }
+}

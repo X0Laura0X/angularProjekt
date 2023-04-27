@@ -1,0 +1,50 @@
+<form class="signup-form" [formGroup]="signupForm" (ngSubmit)="signup()">
+  <h1 class="signup-header">Sign up</h1>
+
+  <span id="warning-text">{{error}}</span>
+
+  <mat-form-field hintLabel="Max 20 characters" appearance="fill">
+    <mat-label>Username</mat-label>
+    <input type="text" matInput #inputUsername maxlength="20" placeholder="coolNickname" formControlName="name">
+    <mat-hint align="end">{{inputUsername.value.length}}/20</mat-hint>
+    <mat-error>
+      <span *ngIf="signupForm.get('name')?.errors?.['required'] && submitted">Username is required</span>
+      <span *ngIf="signupForm.get('name')?.errors?.['minlength'] && submitted">Username must be more than 6 characters</span>
+      <span *ngIf="signupForm.get('name')?.errors?.['maxlength'] && submitted">Username must be less than 20 characters</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field hintLabel="Max 50 characters" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type="text" matInput #inputEmail maxlength="50" placeholder="somebody@gmail.com" formControlName="email">
+    <mat-hint align="end">{{inputEmail.value.length}}/50</mat-hint>
+    <mat-error>
+      <span *ngIf="signupForm.get('email')?.errors?.['required'] && submitted">Email is required</span>
+      <span *ngIf="signupForm.get('email')?.errors?.['maxlength'] && submitted">Email must be less than 50 characters</span>
+      <span *ngIf="signupForm.get('email')?.errors?.['validateEmailFormat'] && submitted">Email is badly formatted</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field hintLabel="Max 15 characters" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput #inputPassword maxlength="15" formControlName="password">
+    <mat-hint align="end">{{inputPassword.value.length}}/15</mat-hint>
+    <mat-error>
+      <span *ngIf="signupForm.get('password')?.errors?.['required'] && submitted">Password is required</span>
+      <span *ngIf="signupForm.get('password')?.errors?.['minlength'] && submitted">Password must be more than 6 characters</span>
+      <span *ngIf="signupForm.get('password')?.errors?.['maxlength'] && submitted">Password must be less than 15 characters</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password again</mat-label>
+    <input type="password" matInput placeholder="Password again" maxlength="15" formControlName="passwordAgain">
+    <mat-error>
+      <span *ngIf="signupForm.get('passwordAgain')?.errors?.['required'] && submitted">Confirm password is required</span>
+      <span *ngIf="signupForm.get('passwordAgain')?.errors?.['maxlength'] && submitted">Confirm password must be less than 15 characters</span>
+      <span *ngIf="signupForm.get('passwordAgain')?.errors?.['passwordMatch'] && submitted">Passwords do not match</span>
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" >Sign up</button>
+</form>

@@ -1,0 +1,45 @@
+$large-size: 30px;
+$medium-size: 20px;
+$small-size: 10px;
+
+$purple: #4B0082;
+$yellow: #cca633;
+
+.account-form {
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  position: relative;
+  left: 0;
+  right: 0;
+  padding: $large-size;
+  border-radius: $medium-size;
+  background-color: $purple;
+}
+
+.account-header {
+  font-size: $large-size;
+  text-shadow: 0 0 5px black;
+  text-transform: uppercase;
+  font-weight: lighter;
+  padding: $small-size 0;
+}
+
+mat-form-field {
+  padding: $small-size;
+}
+
+button[type="submit"] {
+  float: right;
+}
+
+button[type="button"] {
+  display: block;
+  width: 100%;
+  margin: $small-size;
+}
+
+mat-divider {
+  border: 1px solid $yellow;
+  margin-bottom: $medium-size;
+}

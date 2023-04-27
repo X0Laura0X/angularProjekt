@@ -1,0 +1,25 @@
+<form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
+  <h1 class="login-header">Login</h1>
+
+  <span id="warning-text">{{error}}</span>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput maxlength="50" placeholder="somebody@example.com" formControlName="email">
+    <mat-error>
+      <span *ngIf="loginForm.get('email')?.errors?.['required'] && submitted">Email is required</span>
+      <span *ngIf="loginForm.get('email')?.errors?.['maxlength'] && submitted">Email must be less than 50 characters</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input type="password" maxlength="15" matInput formControlName="password">
+    <mat-error>
+      <span *ngIf="loginForm.get('password')?.errors?.['required'] && submitted">Password is required</span>
+      <span *ngIf="loginForm.get('password')?.errors?.['maxlength'] && submitted">Password must be less than 15 characters</span>
+    </mat-error>
+  </mat-form-field>
+
+  <button type="submit" mat-raised-button color="primary" >Log in</button>
+</form>

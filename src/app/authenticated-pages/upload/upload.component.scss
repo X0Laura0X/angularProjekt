@@ -1,0 +1,137 @@
+$large-size: 30px;
+$medium-size: 20px;
+$small-size: 10px;
+
+$purple: #4B0082;
+$yellow: #cca633;
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 700px;
+  height: fit-content;
+  margin: auto;
+  left: 0;
+  right: 0;
+  padding: $large-size;
+  border-radius: $medium-size;
+  background-color: $purple;
+  position: relative;
+}
+
+.file-upload {
+  border: 2px dashed;
+  display: inline-block;
+  padding: $medium-size 0;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: $medium-size;
+}
+
+mat-card {
+  width: 760px;
+  position: relative;
+  height: fit-content;
+  margin: 15px auto;
+  left: 0;
+  right: 0;
+  padding: $large-size;
+  border-radius: $medium-size;
+  background-color: $purple;
+}
+
+mat-form-field {
+  padding: $medium-size 0;
+}
+
+.upload-header {
+  font-size: $large-size;
+  text-shadow: 0 0 5px black;
+  text-transform: uppercase;
+  font-weight: lighter;
+  padding: $small-size 0;
+}
+
+table {
+  width: 100%;
+  height: fit-content;
+  background: none;
+}
+
+th, td {
+  color: white;
+}
+
+mat-divider {
+  border: 1px solid $yellow;
+  margin-bottom: $medium-size;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+#delete-file-button {
+  transform: scale(80%);
+}
+
+#delete-file-button mat-icon {
+  transform: translate(-7%, 7%);
+}
+
+.file-upload:hover, .file-upload:active {
+  opacity: 0.8;
+}
+
+mat-icon {
+  transform: scale(200%);
+  padding: 0 $medium-size;
+}
+
+#type-text {
+  font-weight: bold;
+  margin-right: 15px;
+  padding: $medium-size 0;
+}
+
+#file-text {
+  font-size: $large-size;
+}
+
+#type {
+  text-transform: capitalize;
+}
+
+#name {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.white-text {
+  color: white;
+}
+
+#warning-text {
+  color: red;
+  text-transform: uppercase;
+  font-weight: lighter;
+}
+
+#percentage {
+  display: block;
+  text-align: center;
+}
+
+mat-progress-bar {
+  margin: $medium-size auto;
+}
+
+@media only screen and (max-width: 380px) {
+  mat-card {
+    width: 100%;
+  }
+  .upload-form {
+    width: 80%;
+  }
+}

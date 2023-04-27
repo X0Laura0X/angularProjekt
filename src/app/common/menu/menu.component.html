@@ -1,0 +1,57 @@
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <span fxHide fxShow.gt-md id="app-name" routerLink="/">mCore</span>
+
+      <div fxHide fxShow.gt-sm id="menu-container" fxFlex fxLayout fxLayoutAlign="center">
+        <ul fxLayout fxLayoutGap="100px">
+          <li class="menu-list-item" routerLink="/download"
+              [ngClass]="{'menu-active': isActive('/download')}"
+              [ngStyle]="{'opacity': currentUser !== null ? 1 : 0.5, 'pointer-events' : currentUser !== null ? 'auto' : 'none'}">
+            Download
+          </li>
+          <mat-divider vertical></mat-divider>
+          <li class="menu-list-item" routerLink="/upload"
+              [ngClass]="{'menu-active': isActive('/upload')}"
+              [ngStyle]="{'opacity': currentUser !== null ? 1 : 0.5, 'pointer-events' : currentUser !== null ? 'auto' : 'none'}">
+            Upload
+          </li>
+          <mat-divider vertical></mat-divider>
+          <li class="menu-list-item" routerLink="account"
+              [ngClass]="{'menu-active': isActive('/account')}"
+              [ngStyle]="{'opacity': currentUser !== null ? 1 : 0.5, 'pointer-events' : currentUser !== null ? 'auto' : 'none'}">
+            Account
+          </li>
+        </ul>
+      </div>
+
+      <div fxShow fxHide.gt-sm>
+        <button mat-icon-button routerLink="/download">
+          <mat-icon>download</mat-icon>
+        </button>
+        <button mat-icon-button routerLink="/upload">
+          <mat-icon>upload</mat-icon>
+        </button>
+        <button mat-icon-button routerLink="/account">
+          <mat-icon>settings</mat-icon>
+        </button>
+      </div>
+
+      <div [ngSwitch]="currentUser">
+        <div *ngSwitchCase="null">
+          <button mat-icon-button routerLink="/login">
+            <mat-icon>login</mat-icon>
+          </button>
+          <button mat-icon-button routerLink="/sign-up">
+            <mat-icon>person_add</mat-icon>
+          </button>
+        </div>
+        <div *ngSwitchDefault>
+          <button mat-icon-button routerLink="/login"  (click)="logout()">
+            <mat-icon>logout</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>

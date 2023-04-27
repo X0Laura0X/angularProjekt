@@ -1,0 +1,34 @@
+<form class="account-form" [formGroup]="userUpdateForm" (ngSubmit)="saveChanges()">
+  <h1 class="account-header">
+    Account
+    <button type="submit" mat-raised-button color="accent">Save</button>
+  </h1>
+
+  <mat-divider></mat-divider>
+
+  <mat-form-field hintLabel="Max 20 characters" appearance="fill">
+    <mat-label>New username</mat-label>
+    <input type="text" matInput #inputUsername maxlength="20" placeholder="{{username}}" formControlName="name">
+    <mat-hint align="end">{{inputUsername.value.length}}/20</mat-hint>
+    <mat-error>
+      <span *ngIf="userUpdateForm.get('name')?.errors?.['required'] && submitted">Username is required</span>
+      <span *ngIf="userUpdateForm.get('name')?.errors?.['minlength'] && submitted">Username must be more than 6 characters</span>
+      <span *ngIf="userUpdateForm.get('name')?.errors?.['maxlength'] && submitted">Username must be less than 20 characters</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field hintLabel="Max 15 characters" appearance="fill">
+    <mat-label>New password</mat-label>
+    <input type="password" matInput #inputPassword maxlength="15" formControlName="password">
+    <mat-hint align="end">{{inputPassword.value.length}}/15</mat-hint>
+    <mat-error>
+      <span *ngIf="userUpdateForm.get('password')?.errors?.['required'] && submitted">Password is required</span>
+      <span *ngIf="userUpdateForm.get('password')?.errors?.['minlength'] && submitted">Password must be more than 6 characters</span>
+      <span *ngIf="userUpdateForm.get('password')?.errors?.['maxlength'] && submitted">Password must be less than 15 characters</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-divider></mat-divider>
+
+  <button type="button" mat-raised-button color="warn" (click)="deleteUser()">Delete account</button>
+</form>

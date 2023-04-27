@@ -1,0 +1,66 @@
+<h1 class="comment-header">{{fileName}}</h1>
+
+<mat-tab-group color="accent">
+  <mat-tab label="Brofists">
+    <div id="brofist-list">
+      <mat-list role="list" class="brofist-list">
+        <mat-list-item role="listitem" *ngFor="let brofist of brofists">
+          <span class="white-text"> {{brofist.username}} </span>
+        </mat-list-item>
+      </mat-list>
+      <button type="button" mat-raised-button color="accent" (click)="addBrofist()">Add brofist</button>
+      <button type="button" mat-raised-button color="warn" (click)="deleteBrofist()">Delete brofist</button>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Comments">
+    <mat-list role="list" class="brofist-list">
+      <mat-list-item role="listitem" *ngFor="let comment of comments">
+        <span matListItemTitle>
+          <span class="white-text">{{comment.username}}</span>
+          <button id="delete-comment-button" *ngIf="comment.username === username" (click)="deleteComment(comment.id)" mat-fab color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </span>
+        <span matListItemLine><span class="white-text">{{comment.text}}</span></span>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-divider></mat-divider>
+
+    <form class="comment-form" [formGroup]="commentForm" (ngSubmit)="createComment()">
+      <h1 class="comment-header">Comment</h1>
+      <mat-form-field hintLabel="Max 65 characters" appearance="fill">
+        <mat-label>Text</mat-label>
+        <input type="text" matInput #inputText maxlength="65" formControlName="text">
+        <mat-hint align="end">{{inputText.value.length}}/65</mat-hint>
+        <mat-error>
+          <span *ngIf="commentForm.get('text')?.errors?.['required'] && submittedComment">Text is required</span>
+          <span *ngIf="commentForm.get('text')?.errors?.['minlength'] && submittedComment">Text must be more than 2 characters</span>
+          <span *ngIf="commentForm.get('text')?.errors?.['maxlength'] && submittedComment">Text must be less than 15 characters</span>
+        </mat-error>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="primary" >Submit</button>
+    </form>
+  </mat-tab>
+
+  <mat-tab label="Settings" *ngIf="myFiles">
+    <form class="update-form" [formGroup]="updateFileForm" (ngSubmit)="updateFile()">
+      <section id="radio-group">
+        <label id="type-text">New type</label>
+        <mat-radio-group formControlName="type">
+          <mat-radio-button [value]="'movie'"><span class="white-text">Movie</span></mat-radio-button>
+          <mat-radio-button [value]="'series'"><span class="white-text">Series</span></mat-radio-button>
+          <mat-radio-button [value]="'book'"><span class="white-text">Book</span></mat-radio-button>
+          <mat-radio-button [value]="'music'"><span class="white-text">Music</span></mat-radio-button>
+          <mat-radio-button [value]="'game'"><span class="white-text">Game</span></mat-radio-button>
+          <mat-radio-button [value]="'other'"><span class="white-text">Other</span></mat-radio-button>
+        </mat-radio-group>
+        <mat-error>
+          <span *ngIf="updateFileForm.get('type')?.errors?.['required'] && submittedFile">Type is required</span>
+        </mat-error>
+      </section>
+      <button type="submit" mat-raised-button color="accent">Save</button>
+    </form>
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,63 @@
+$large-size: 30px;
+$medium-size: 20px;
+$small-size: 10px;
+
+$purple: #4B0082;
+$yellow: #cca633;
+
+#app-name {
+  cursor: pointer;
+  font-size: $large-size;
+  font-weight: bold;
+  font-style: oblique;
+  background: -webkit-linear-gradient(45deg, $purple, $yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: 100px;
+  position: absolute;
+  top: 15px;
+  left: $medium-size;
+}
+
+ul {
+  margin-right: 55px;
+}
+
+li.menu-list-item {
+  list-style: none;
+  text-transform: uppercase;
+  font-weight: lighter;
+  margin-right: -100px;
+}
+
+.menu-list-item:hover, .menu-list-item:active {
+  opacity: 0.8;
+  cursor: pointer;
+  scale: 110%;
+}
+
+#menu-container {
+  height: 100%;
+}
+
+mat-divider {
+  border: 1px solid $yellow;
+}
+
+.menu-active {
+  color: $yellow;
+}
+
+mat-sidenav-container {
+  position: relative;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+mat-sidenav-content {
+  width: 100%;
+}
+
+mat-toolbar {
+  width: 100%;
+}

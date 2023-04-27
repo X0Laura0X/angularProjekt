@@ -1,0 +1,44 @@
+<mat-card >
+  <mat-card-header>
+    <h1 class="download-header">Files</h1>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="type">
+        <th fxShow fxHide.lt-md mat-header-cell *matHeaderCellDef>Type</th>
+        <td fxShow fxHide.lt-md id="type" mat-cell *matCellDef="let file">{{file.type}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td id="name" mat-cell *matCellDef="let file" (click)="showDetails(file.id)">{{file.name}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th fxShow fxHide.lt-md mat-header-cell *matHeaderCellDef>Uploaded</th>
+        <td fxShow fxHide.lt-md mat-cell *matCellDef="let file">{{file["createdAt"]}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="uploader">
+        <th fxShow fxHide.lt-md mat-header-cell *matHeaderCellDef>Uploader</th>
+        <td fxShow fxHide.lt-md mat-cell *matCellDef="let file">{{file["uploader"]}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="download">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let file" (click)="downloadFile(file.name)">
+          <button mat-fab color="accent">
+            <mat-icon >download</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+    </table>
+
+    <app-file [username]="username" [myFiles]="false" [fileId]="fileId" *ngIf="fileId"></app-file>
+
+  </mat-card-content>
+</mat-card>

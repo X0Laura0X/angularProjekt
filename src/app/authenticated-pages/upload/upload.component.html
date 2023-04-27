@@ -1,0 +1,90 @@
+<form class="upload-form" [formGroup]="uploadFileForm" (ngSubmit)="uploadFile()">
+  <h1 class="upload-header">Upload</h1>
+
+  <mat-divider></mat-divider>
+
+  <section id="radio-group">
+    <label id="type-text">Type:</label>
+    <mat-radio-group formControlName="type">
+      <mat-radio-button [value]="'movie'"><span class="white-text">Movie</span></mat-radio-button>
+      <mat-radio-button [value]="'series'"><span class="white-text">Series</span></mat-radio-button>
+      <mat-radio-button [value]="'book'"><span class="white-text">Book</span></mat-radio-button>
+      <mat-radio-button [value]="'music'"><span class="white-text">Music</span></mat-radio-button>
+      <mat-radio-button [value]="'game'"><span class="white-text">Game</span></mat-radio-button>
+      <mat-radio-button [value]="'other'"><span class="white-text">Other</span></mat-radio-button>
+    </mat-radio-group>
+    <mat-error>
+      <span *ngIf="uploadFileForm.get('type')?.errors?.['required'] && submitted">Type is required</span>
+    </mat-error>
+  </section>
+
+  <span id="warning-text">You need to write the extension at the end and you have to wait for the file to upload completely</span>
+
+  <mat-form-field hintLabel="Max 20 characters" appearance="fill">
+    <mat-label>File name</mat-label>
+    <input type="text" matInput #inputName maxlength="20" formControlName="name">
+    <mat-hint align="end">{{inputName.value.length}}/20</mat-hint>
+    <mat-error>
+      <span *ngIf="uploadFileForm.get('name')?.errors?.['required'] && submitted">Name is required</span>
+      <span *ngIf="uploadFileForm.get('name')?.errors?.['minlength'] && submitted">Name must be more than 2 characters</span>
+      <span *ngIf="uploadFileForm.get('name')?.errors?.['maxlength'] && submitted">Name must be less than 20 characters</span>
+      <span *ngIf="uploadFileForm.get('name')?.errors?.['haveExtension'] && submitted">Name does not contain extension</span>
+    </mat-error>
+  </mat-form-field>
+
+    <label class="file-upload" [ngStyle]="{'border': isSelected === true ? '2px dashed green' : '2px dashed grey'}">
+      <input type="file" (change)="onFileSelected($event)" formControlName="file">
+      <span id="file-text" [ngStyle]="{'color': isSelected === true ? 'green' : 'grey'}">
+        <mat-icon>upload_file</mat-icon>
+        Select your file here
+      </span>
+    </label>
+    <mat-error>
+      <span *ngIf="uploadFileForm.get('file')?.errors?.['required'] && submitted">File is required</span>
+    </mat-error>
+
+  <span id="percentage">{{uploadPercentage | percentageFormat}} %</span>
+  <mat-progress-bar color="warn" mode="determinate" value="{{uploadPercentage}}"></mat-progress-bar>
+
+  <button type="submit" mat-raised-button color="accent">Upload</button>
+</form>
+
+<mat-card>
+  <mat-card-header>
+    <h1 class="upload-header">Your files</h1>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="type">
+        <th fxShow fxHide.lt-md mat-header-cell *matHeaderCellDef> Type </th>
+        <td fxShow fxHide.lt-md id="type" mat-cell *matCellDef="let file"> {{file.type}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td id="name" mat-cell *matCellDef="let file" (click)="showDetails(file.id)"> {{file.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th fxShow fxHide.lt-md mat-header-cell *matHeaderCellDef> Uploaded </th>
+        <td fxShow fxHide.lt-md mat-cell *matCellDef="let file"> {{file["createdAt"]}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let file" (click)="deleteFile(file.id)">
+          <button id="delete-file-button" mat-fab color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+    </table>
+
+    <app-file [username]="username" [myFiles]="true" [fileId]="fileId" *ngIf="fileId"></app-file>
+
+  </mat-card-content>
+</mat-card>
